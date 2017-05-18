@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hello</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div>
+    <h1>become an easy dank memer</h1>
+    <form id="main">
+      <input type="text" id="text" />
+    </form>
+    <p id="result"></p>
+    </div>
+  </body>
+  <script>
+    const ready = fn => document.readyState != 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn);
+    const spongebob = text => text.toUpperCase().split('').map((ele, i) => i % 2 === 1 ? ele.toLowerCase() : ele).join('');
+    const handleSubmit = e => {
+      e.preventDefault();
+      const input = document.forms[0].elements[0];
+      const result = document.getElementById('result');
+      result.textContent = spongebob(input.value);
+      input.value = '';
+    }
+
+    ready(() => document.getElementById('main').addEventListener('submit', handleSubmit));
+  </script>
+</html>
