@@ -9,6 +9,7 @@
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       display: flex;
       justify-content: center;
+      background-color: #FAFAFA;
     }
 
     .main {
@@ -27,17 +28,24 @@
 
 
     #result {
+      background-color: #FFFFFF;
       width: 90%;
       max-width: 500px;
       padding: 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
+      display: none;
     }
 
-    #spongebob-picture {
+    #result-text {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    #spongebob-img {
+      border-radius: 5px;
       width: 100%;
-      display: none;
     }
     </style>
   </head>
@@ -50,21 +58,24 @@
     </form>
     <div id="result">
       <p id="result-text"></p>
-      <img src="spongebob.jpg" alt="spongebob" id="spongebob-picture">
+      <img src="spongebob.jpg" alt="spongebob" id="spongebob-img">
     </div>
     </div>
   </body>
   <script>
     const ready = fn => document.readyState != 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn);
     const spongebob = meme => meme.toUpperCase().split('').map((ele, i) => i % 2 === 1 ? ele.toLowerCase() : ele).join('');
+    const changeStyle = () => {
+      const stylez = document.getElementById('result').style;
+      stylez.border = '1px solid rgb(230, 236, 240)';
+      stylez.display = 'initial';
+    }
     const handleSubmit = e => {
-      console.log('uh')
       e.preventDefault();
       const input = document.forms[0].elements[0];
       document.getElementById('result-text').textContent = spongebob(input.value);
       input.value = '';
-      document.getElementById('spongebob-picture').style.display = 'initial';
-      document.getElementById('result').style.border = '1px solid rgb(230, 236, 240)';
+      changeStyle();
     }
 
     ready(() => document.getElementById('formz').addEventListener('submit', handleSubmit));
