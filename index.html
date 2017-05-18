@@ -17,7 +17,7 @@
       align-items: center;
     }
 
-    #form {
+    #formz {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -35,7 +35,7 @@
       align-items: center;
     }
 
-    #spongebob {
+    #spongebob-picture {
       width: 100%;
       display: none;
     }
@@ -44,13 +44,13 @@
   <body>
     <div class="main">
     <h1>become an easy dank memer</h1>
-    <form id="form">
+    <form id="formz">
       <input type="text" id="text" placeholder="just type something" />
       <button type="submit">ok!</button>
     </form>
     <div id="result">
       <p id="result-text"></p>
-      <img src="spongebob.jpg" alt="spongebob" id="spongebob">
+      <img src="spongebob.jpg" alt="spongebob" id="spongebob-picture">
     </div>
     </div>
   </body>
@@ -58,14 +58,15 @@
     const ready = fn => document.readyState != 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn);
     const spongebob = meme => meme.toUpperCase().split('').map((ele, i) => i % 2 === 1 ? ele.toLowerCase() : ele).join('');
     const handleSubmit = e => {
+      console.log('uh')
       e.preventDefault();
       const input = document.forms[0].elements[0];
       document.getElementById('result-text').textContent = spongebob(input.value);
       input.value = '';
-      document.getElementById('spongebob').style.display = 'initial';
+      document.getElementById('spongebob-picture').style.display = 'initial';
       document.getElementById('result').style.border = '1px solid rgb(230, 236, 240)';
     }
 
-    ready(() => document.getElementById('form').addEventListener('submit', handleSubmit));
+    ready(() => document.getElementById('formz').addEventListener('submit', handleSubmit));
   </script>
 </html>
