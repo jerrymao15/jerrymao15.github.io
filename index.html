@@ -4,15 +4,54 @@
     <title>hello</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #form {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 200px;
+      margin: 1em 0;
+    }
+
+
+    #result {
+      width: 100%;
+      max-width: 500px;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #spongebob {
+      width: 100%;
+      display: none;
+    }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="main">
     <h1>become an easy dank memer</h1>
-    <form id="main">
-      <input type="text" id="text" />
+    <form id="form">
+      <input type="text" id="text" placeholder="just type something" />
       <button type="submit">ok!</button>
     </form>
-    <p id="result"></p>
+    <div id="result">
+      <p id="result-text"></p>
+      <img src="spongebob.jpg" alt="spongebob" id="spongebob">
+    </div>
     </div>
   </body>
   <script>
@@ -21,11 +60,12 @@
     const handleSubmit = e => {
       e.preventDefault();
       const input = document.forms[0].elements[0];
-      const result = document.getElementById('result');
-      result.textContent = spongebob(input.value);
+      document.getElementById('result-text').textContent = spongebob(input.value);
       input.value = '';
+      document.getElementById('spongebob').style.display = 'initial';
+      document.getElementById('result').style.border = '1px solid rgb(230, 236, 240)';
     }
 
-    ready(() => document.getElementById('main').addEventListener('submit', handleSubmit));
+    ready(() => document.getElementById('form').addEventListener('submit', handleSubmit));
   </script>
 </html>
